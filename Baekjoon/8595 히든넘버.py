@@ -9,8 +9,9 @@ for i in mix:
         temp.append(i)
     
     else:
-        nums.append(int(''.join(temp)))
-        temp = []
+        if temp:
+            nums.append(int(''.join(temp)))
+            temp = []
 
 if len(temp) > 0:
     nums.append(int(''.join(temp)))
@@ -30,7 +31,7 @@ mix = input().rstrip()
 nums, temp = 0, "0"
 for i in mix:
     if i.isdigit() == True:
-        temp+=i
+        temp += i
     
     else:
         nums += int(temp)
