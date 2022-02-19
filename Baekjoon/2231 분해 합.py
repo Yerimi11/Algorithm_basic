@@ -2,7 +2,7 @@
 # 그 다음 자리 수는 0~9까지 다 돌면서 재귀로 찾기
 
 # "M" == 'a' + 'b' + 'c'
-# N = M + a + b + c     
+# N = M + a + b + c      
 
 import sys
 input = sys.stdin.readline
