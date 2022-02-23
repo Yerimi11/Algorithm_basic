@@ -9,7 +9,7 @@ input = sys.stdin.readline
 N, M = map(int, input().split())
 cards = list(map(int, input().split()))
 
-# max(3개의 합) < M 
+# max(3개의 합) < M  
 # 3포인터?
 
 num_sum = M
