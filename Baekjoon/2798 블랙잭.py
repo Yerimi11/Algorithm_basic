@@ -25,7 +25,7 @@ result = []
 
 #     # while (num_sum != sum(cards[-3:])):
 #     # while (cards[start] == cards[-3] and cards[mid] == cards[-2] and cards[end] == cards[-1]):
-# if (cards[start] != cards[-3]):
+# if (cards[start] != cards[-3]):  => 3중 for문으로 구현하면 됨!
 #     nums_sum(start+1, mid, end, result)
 
 #     if (cards[mid] != cards[-2]):
