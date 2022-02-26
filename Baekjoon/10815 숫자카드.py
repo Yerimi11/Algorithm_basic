@@ -19,22 +19,24 @@ m_list = list(map(int, input().split()))
 # -10 -5 2 3 4 5 9 10
 # 여기서 어느쪽을 이분탐색하지? 
 
-n_list = sorted(n_list)
-m_list = sorted(m_list)
+n_list.sort()
 answer = []
 
-start_index, end_index = 0, len(n_list)-1
 for m in m_list:
-    while start_index <= end_index:
-        mid_index = (start_index + end_index) // 2
+    left, right = 0, n-1
+    while left <= right:
+        mid = (left + right) // 2
 
-        if n_list[mid_index] == m:
-            answer += 1
+        if n_list[mid] == m:
+            answer.append(1)
             break
-        elif n_list[mid_index] < m:
-            start_index = mid_index + 1
+        elif n_list[mid] > m:
+            right = mid - 1
         else:
-            end_index = mid_index - 1
-            answer += 0
+            left = mid + 1
+    
+    if left > right:
+        answer.append(0)
 
-    print(answer)
+
+print(*answer)
