@@ -7,20 +7,59 @@
 
 # —
 
+# import sys
+# input = sys.stdin.readline
+# n, m = map(int, input().split())
+# lessons = list(map(int, input().split()))
+
 # 이 문제는 이분 탐색(Binary Search) 문제이다.
-#  
 # 주어진 기타 레슨을 M개 이하의 구역으로 분리하는 블루레이 크기 중 최솟값을 출력하면 된다.
-#  
+
 # 이분 탐색을 진행하기 위해서 Left, Right를 아래와 같이 초기화하였다.
-# Left = sum(기타 레슨) // M
-# Right = sum(기타 레슨)
-# answer(최종답) = Right
-#  
+# Left = sum(기타 레슨) // M    => left  15 = 45%3
+# Right = sum(기타 레슨)        => right 45
+# answer(최종답) = Right       => answer 45
+
+
 # 위 과정을 진행한 후 본격적인 이분 탐색 과정은 다음과 같다.
-# 1. mid값을 구한다. (left + right) // 2
+# 1. mid값을 구한다. (left + right) // 2        => mid 30 = (15+45)//2
 # 2. mid값이 기타 레슨의 최댓값보다 작은지 판단한다.
-#    -  작다면 기타 레슨을 담을 수 없으므로 left = mid + 1로 업데이트한다.
-# 3. mid값으로 기타 레슨을 M개 이하의 구역으로 나눌 수 있는지 판단한다.
-#    - 나눌 수 있다면 더 작은 값을 판단하기 위해서 right = mid - 1로 업데이트한다.
-#    - answer값보다 mid값이 작다면 answer를 mid로 업데이트한다.
+#    -  작다면 기타 레슨을 담을 수 없으므로 left = mid + 1로 업데이트한다.          => left 31
+# 3. mid값으로 기타 레슨을 M개 이하의 구역으로 나눌 수 있는지 판단한다.               => 31 % 3 쌉가능
+#    - 나눌 수 있다면 더 작은 값을 판단하기 위해서 right = mid - 1로 업데이트한다.   => right 29
+#    - answer값보다 mid값이 작다면 answer를 mid로 업데이트한다.                 => answer 30
 #    - 나눌 수 없다면 더 큰 값을 판단하기 위해서 left = mid + 1로 업데이트한다.
+
+if __name__ == "__main__":
+
+    N, M = map(int, input().split())
+    arr = list(map(int, input().split()))
+
+    lesson_total = sum(arr)
+    left, right = lesson_total // M, sum(arr)
+    # print(left, right)
+    answer = right
+    while left <= right:
+        mid = (left + right) // 2
+
+        if mid < max(arr):
+            left = mid + 1
+            continue
+        # 조건 만족 확인
+        count, temp = 0, 0
+        for i in range(len(arr)):
+            if arr[i] > mid:
+                break
+            elif temp + arr[i] <= mid:
+                temp += arr[i]
+            else:
+                temp = arr[i]
+                count += 1
+
+        if count <= M - 1:  # 가능한 경우 (더 작은 값이 있는지 확인해야 한다)
+            right = mid - 1
+            answer = min(answer, mid)  # answer 값 업데이트
+        else:  # 값을 증가시켜야 한다.
+            left = mid + 1
+
+    print(answer)
