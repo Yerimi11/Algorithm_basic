@@ -9,3 +9,4 @@ elif n[0] == '0':
 else:
     n = int(n)
 print(n)
+ 
