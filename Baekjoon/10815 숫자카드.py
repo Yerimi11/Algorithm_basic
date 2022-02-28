@@ -1,6 +1,4 @@
 import sys
-from tracemalloc import start
-from unittest.util import _MIN_DIFF_LEN
 input = sys.stdin.readline
 n = int(input())
 n_list = list(map(int, input().split()))
