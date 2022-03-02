@@ -1,4 +1,4 @@
-# 생각한 아이디어 https://chanhuiseok.github.io/posts/baek-22/
+# 생각한 아이디어 https://chanhuiseok.github.io/posts/baek-22/ 
 # 이분 탐색 문제는 무엇을 탐색할 것인지 생각하는 것이 가장 중요한 것 같습니다.
 
 # 이 문제는 블루레이의 최소 크기를 찾는 문제입니다.
