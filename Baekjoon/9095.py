@@ -14,3 +14,4 @@ for _ in range(t):
     n = int(input())
     print(arr[n])
     
+다른 방법으로도 풀 수 있을까?
