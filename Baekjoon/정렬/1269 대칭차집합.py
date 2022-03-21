@@ -1,3 +1,4 @@
+# defaultdict 이용
 from collections import defaultdict
 import sys
 input = sys.stdin.readline
