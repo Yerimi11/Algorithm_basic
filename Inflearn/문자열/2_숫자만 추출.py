@@ -18,8 +18,11 @@ for i in range(1, nums+1):
         count += 1
 print(count)
 
+# 시간복잡도 -> O(N) : 중첩되는 for문이 없고, 
+#                   word길이만큼 돌리는 반복문이 제일 기므로 
+#                   word의 길이를 n으로 놓는다면, O(N)
 # t0e0a1c2h0er
-# -> 120, 16
+# 답 120, 16
 
 # g0en2Ts8eSoft
-# -> 28, 6
+# 답 28, 6

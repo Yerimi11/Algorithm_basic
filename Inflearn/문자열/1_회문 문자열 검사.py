@@ -21,6 +21,7 @@ for i in range(len(words)):
             print("#%d NO" %(i+1))
             break
 
+# 시간복잡도 -> O(n^2) : 2중 for문
 # 5
 # level
 # moon
