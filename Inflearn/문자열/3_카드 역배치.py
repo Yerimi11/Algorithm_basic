@@ -6,12 +6,12 @@ cards = list(range(1, 21))
 
 while len(mixlst) != 0:
     a, b = mixlst.pop(0)
-    for _ in range((b//a)+1):
+    for _ in range((b//a)+1): # (b-a+1) // 2 로 하면, 밑에 if문 (남은 카드 수가 홀수일 때) 없애도 됨
         if a == b or (a-1) == b:
             continue
         cards[a-1], cards[b-1] = cards[b-1], cards[a-1]
         a, b = a+1, b-1
-        
+
 for i in cards:
     print(i, end = ' ')
 
