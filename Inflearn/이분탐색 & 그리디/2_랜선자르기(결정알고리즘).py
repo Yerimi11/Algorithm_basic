@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-def count(len):
+def Count(len):
     cnt = 0
     for x in line:
         cnt += (x//len)
@@ -9,13 +9,13 @@ def count(len):
 
 k, n  = map(int, input().split())
 line = list(int(input()) for _ in range(k)) # line = [802, 743, 457, 539]
-res, largest = 0, 0     # 최대길이 저장
+res, largest = 0, 0
 largest = max(line)
 l, r = 1, largest
 
 while l<=r:
     mid = (l+r)//2
-    if count(mid) >= n:
+    if Count(mid) >= n:
         res = mid
         l = mid + 1
     else:
