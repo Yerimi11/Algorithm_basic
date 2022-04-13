@@ -2,32 +2,44 @@ import sys
 input = sys.stdin.readline
 n = int(input())
 lst = [list(map(int, input().split())) for _ in range(n)]
-lst.sort()
 
-count = []
-cnt = 1
-s, e = 0, 1
-temp = s
-temp_cnt = 0
-while s < n and e != n:
-    if lst[s][1] == lst[e][0]:
+# 회의가 빨리 끝나야 더 많은 회의를 진행할 수 있으니, 정렬을 시작시간이 아닌 끝나는 시간을 기준으로 해야한다.
+lst.sort(key=lambda x : (x[1], x[0]))   # 튜플에서 두번째를 기준으로 정렬
+
+endtime = cnt = 0
+for s, e in lst:
+    print(s, e)
+    if s >= endtime:
+        endtime = e
         cnt += 1
-        s = e 
-        e = s + 1
-    else:
-        e = e + 1
-    if e != n and lst[s][0] == lst[s+1][0]:
-        temp_cnt = cnt
-    if e == n or lst[e][0] > lst[s][1]: # 첫 회의 시작 시간을 다음 케이스로 초기화
-        count.append(cnt)
-        if lst[s][0] != lst[temp][0]:
-            cnt = 1
-        else:
-            cnt = temp_cnt
-        temp = temp + 1
-        s, e = temp, temp + 1
+print(cnt)
 
-print(max(count))
+# count = []
+# cnt = 1
+# s, e = 0, 1
+# temp = s
+# while s < n and e != n:
+#     print(lst.index(lst[s]), lst[s])
+#     print(lst.index(lst[e]), lst[e])
+#     print("------------")
+#     if lst[s][1] <= lst[e][0]:
+#         cnt += 1
+#         s = e 
+#         e = s + 1
+#     else:
+#         e = e + 1
+#     if e == n:  # 첫 회의 시작 시간을 다음 케이스로 초기화
+#         count.append(cnt)
+#         if lst[s][0] != lst[temp][0]:
+#             cnt = 1
+#             temp = temp + 1
+#             s, e = temp, temp + 1
+#         else:
+#             e = s + 1
+
+# print(max(count))
+
+
 
 # 5
 # 1 4
