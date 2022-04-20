@@ -1,31 +1,33 @@
 import sys
-input = sys.stdin.readline
+from collections import deque
+read_file = open("/Users/yerim/Downloads/pythonalgorithm_formac/이분탐색&그리디/8. 침몰하는 타이타닉/in5.txt", 'r')
+input = read_file.readline
+# input = sys.stdin.readline
 n, m = map(int, input().split())
 weights = list(map(int, input().split()))
+weights.deque(weights)
 weights.sort()
 count = 0
-cnt = []
-temp = weights[0]
 
-s = e = a = 1
-while a <= len(weights):
-    if e == len(weights):
-        e = 0
-        cnt.append(count)
-        s = a + 1
-        count = 0
-    temp += weights[e]
-    if temp > m:
+while weights:
+    if len(weights) == 1:
         count += 1
-        if e - s > 1:
-            a = s
-        s = e
-        e = s + 1
-        temp = weights[s]
+        break
+    if weights[0] + weights[-1] > m:
+        count += 1
+        weights.pop()
     else:
-        e += 1
+        count += 1
+        # weights.pop(0)
+        weights.popleft()
+        weights.pop()
 
-print(min(cnt))
+print(count)
+
+read_file.close()
+
+# 리스트에서 pop연산 -> O(N)
+# Deque에서 pop연산 -> O(1)
 
 # 10 150
 # 86 95 107 67 38 49 116 22 78 53 
