@@ -5,7 +5,7 @@ input = read_file.readline
 # input = sys.stdin.readline
 n, m = map(int, input().split())
 weights = list(map(int, input().split()))
-weights.deque(weights)
+weights = deque(weights)
 weights.sort()
 count = 0
 
