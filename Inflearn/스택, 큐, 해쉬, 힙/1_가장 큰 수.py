@@ -20,8 +20,9 @@ while lenN > 0:
         count -= 1
 
     if len(listN) == 0:
-        for _ in range(count):
-            output.pop()
+        # for _ in range(count):
+        #     output.pop()
+        output = output[:-count]
         break
     elif count == 0:
         for i in listN:
