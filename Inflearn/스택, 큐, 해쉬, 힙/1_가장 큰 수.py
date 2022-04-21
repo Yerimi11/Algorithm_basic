@@ -1,7 +1,7 @@
 import sys
-read_file = open("/Users/yerim/Downloads/pythonalgorithm_formac/스택,큐,해쉬,힙/1. 가장 큰 수/in5.txt", 'r')
-input = read_file.readline
-# input = sys.stdin.readline
+# read_file = open("/Users/yerim/Downloads/pythonalgorithm_formac/스택,큐,해쉬,힙/1. 가장 큰 수/in5.txt", 'r')
+# input = read_file.readline
+input = sys.stdin.readline
 n, m = map(int, input().split())
 count = m
 listN = list(str(n))
