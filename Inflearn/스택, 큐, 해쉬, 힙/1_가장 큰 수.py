@@ -30,3 +30,5 @@ while lenN > 0:
         break
 
 print(*output, sep = '')
+
+# read_file.close()
