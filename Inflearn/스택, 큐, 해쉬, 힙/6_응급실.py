@@ -9,27 +9,37 @@ dq = deque(lst)
 # targetIdx = m
 count = 0
 
-while dq:
-    # if dq[targetIdx] != lst[m]:
-    #     break
-    maxN = max(dq)
-    if dq[m] <= maxN:
-        while maxN != dq[0]:
-            dq.append(dq.popleft())
-            # targetIdx -= 1
-        # if targetIdx < 0:
-            # targetIdx += len(dq)
-        dq.popleft()
-        # targetIdx -= 1
-        count += 1
+while True:
+    cur = dq.popleft()
+    if any(cur[1] < x[1] for x in dq):
+        dq.append(cur)
     else:
-        while maxN != dq[0]:
-            dq.append(dq.popleft())
-        dq.popleft()
         count += 1
-        break
+        if cur[0] == m:
+            print(count)
+            break
 
-print(count)
+# while dq:
+#     # if dq[targetIdx] != lst[m]:
+#     #     break
+#     maxN = max(dq)
+#     if dq[m] <= maxN:
+#         while maxN != dq[0]:
+#             dq.append(dq.popleft())
+#             # targetIdx -= 1
+#         # if targetIdx < 0:
+#             # targetIdx += len(dq)
+#         dq.popleft()
+#         # targetIdx -= 1
+#         count += 1
+#     else:
+#         while maxN != dq[0]:
+#             dq.append(dq.popleft())
+#         dq.popleft()
+#         count += 1
+#         break
+
+# print(count)
 
 # 6 0
 # 60 60 90 60 60 60
