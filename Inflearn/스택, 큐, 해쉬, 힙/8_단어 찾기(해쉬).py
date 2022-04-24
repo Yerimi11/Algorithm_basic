@@ -8,7 +8,7 @@ poetry = dict()
 for i in range(n):
     word = input()
     poetry[word] = 1
-for i in range(1-1):
+for i in range(n-1):
     word = input()
     poetry[word] = 0
 
