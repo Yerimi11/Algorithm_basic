@@ -10,6 +10,6 @@ while True:
         if len(nums) == 0:
             print(-1)
         else:
-            print(hq.heappop(nums))
+            print(-hq.heappop(nums))
     else:
-        hq.heappush(nums, n)
+        hq.heappush(nums, -n)
