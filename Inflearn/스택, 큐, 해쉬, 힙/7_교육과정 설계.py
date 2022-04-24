@@ -1,6 +1,6 @@
 import sys
 from collections import deque
-sys.stdin=open("/Users/yerim/Downloads/pythonalgorithm_formac/스택,큐,해쉬,힙/7. 교육과정 설계/in2.txt", 'r')
+sys.stdin=open("/Users/yerim/Downloads/pythonalgorithm_formac/스택,큐,해쉬,힙/7. 교육과정 설계/in5.txt", 'r')
 # input = sys.stdin.readline
 subs = list(input().rstrip())
 n = int(input())
@@ -14,9 +14,12 @@ for i in range(n):
     Q = deque(subs)
     for x in lst[i]:
         if len(Q) == 0:
-            continue
+            break
         if Q[0] == x:
             Q.popleft()
+        else:
+            if x in Q:
+                break     
     if len(Q) == 0:
         print("#%d YES" %(i+1))
     else:
