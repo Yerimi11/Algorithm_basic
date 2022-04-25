@@ -8,9 +8,9 @@ def DFS(L, sum):
         if sum == (total - sum):
             print("YES")
             sys.exit(0) # 프로그램 종료시킴
-        else:
-            DFS(L+1, sum+a[L])
-            DFS(L+1, sum)
+    else:
+        DFS(L+1, sum+a[L])
+        DFS(L+1, sum)
 
 if __name__ == "__main__":
     n = int(input())
@@ -18,3 +18,5 @@ if __name__ == "__main__":
     total = sum(a)
     DFS(0, 0)
     print("NO")
+
+    import sys
