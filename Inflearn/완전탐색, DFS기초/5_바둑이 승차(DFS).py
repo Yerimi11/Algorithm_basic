@@ -1,5 +1,6 @@
 import sys
 sys.stdin=open("/Users/yerim/Downloads/pythonalgorithm_formac/완전탐색,DFS기초/5. 바둑이 승차/in5.txt", "r")
+input = sys.stdin.readline 
 
 # def DFS(L, sum):
 #     if sum > c:
