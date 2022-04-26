@@ -1,27 +1,27 @@
 import sys
-sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/완전탐색,DFS기초/7. 동전교환/in3.txt", "r")
+sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/완전탐색,DFS기초/7. 동전교환/in2.txt", "r")
 input = sys.stdin.readline
 
-def DFS(L):
-    global temp
-    while True:
-        res[L] += 1
-        temp += coins[L]
-        if temp == m:
-            temp = 0
-            for i in range(n):
-                temp += res[i]
-            print(temp)
-            sys.exit()
-        elif temp > m:
-            temp -= coins[L]
-            res[L] -= 1
-            DFS(L-1)
+def DFS(L, sum):
+    global res
+    if L > res:         # cut edge
+        return
+    if sum == m:
+        if L < res:
+            res = L     # L(depth)가 동전의 갯수
+    if sum > m:
+        return
+    else:
+        for i in range(n):
+            DFS(L+1, sum + coins[i])
+
 
 if __name__ == "__main__":
     n = int(input())
     coins = list(map(int, input().split()))
+    coins = coins[::-1]
     m = int(input())
-    res = [0] * n
-    temp = 0
-    DFS(n-1)
+    res = 2147000000
+    sum = 0
+    DFS(0, 0)
+    print(res)
