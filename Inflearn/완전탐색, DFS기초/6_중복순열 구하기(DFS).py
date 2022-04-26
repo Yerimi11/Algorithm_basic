@@ -1,5 +1,5 @@
 import sys
-sys.stdin=open("/Users/yerim/Downloads/pythonalgorithm_formac/완전탐색,DFS기초/6. 중복순열 구하기/in2.txt", "r")
+# sys.stdin=open("/Users/yerim/Downloads/pythonalgorithm_formac/완전탐색,DFS기초/6. 중복순열 구하기/in2.txt", "r")
 input = sys.stdin.readline
 
 def DFS(L):
