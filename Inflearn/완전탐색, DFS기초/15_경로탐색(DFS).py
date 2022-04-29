@@ -2,7 +2,8 @@ import sys
 input = sys.stdin.readline()
 
 def DFS(v):
-    pass
+    if n == v:
+        pass
 
 
 if __name__ == "__main__":
@@ -14,4 +15,4 @@ if __name__ == "__main__":
         g[a][b] = 1
     cnt = 0
     visited[1] = 1
-    DFS(1)
+    DFS(1) 
