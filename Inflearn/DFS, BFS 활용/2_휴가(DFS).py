@@ -7,14 +7,20 @@ def DFS(L, sum): # L : day
         if sum > res:
             res = sum
     else:
-        if L+lst[L] <= n+1:
-            DFS(L+1, sum+lst[L])
+        if L+T[L] <= n+1:
+            DFS(L+T[L], sum+P[L])
         DFS(L+1, sum)
-             
+
 if __name__ == "__main__":
     n = int(input())
-    lst = map(int, input().split())
-    s = sum(lst)
+    T = list()
+    P = list()
+    for i in range(n):
+        a, b = map(int, input().split())
+        T.append(a)
+        P.append(b)
     res = -2147000000
+    T.insert(0, 0)
+    P.insert(0, 0)
     DFS(1, 0)
     print(res)
