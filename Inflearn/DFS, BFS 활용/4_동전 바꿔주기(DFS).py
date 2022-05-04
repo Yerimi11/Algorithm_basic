@@ -3,15 +3,12 @@ input = sys.stdin.readline
 
 def DFS(L, sum):
     global cnt
-    if sum >= T:
+    if L == k:
         if sum == T:
             cnt += 1
-        return
-    c[L] = c[L]-1
-    if c[L] <= 0:
-        DFS(L+1, sum)
-    DFS(L, sum+coin[L])
-    c[L] = c[L]+1
+    else:
+        for i in range(c[L]+1):
+            DFS(L+1, sum+(i*coin[L]))
 
 if __name__ == "__main__":
     T = int(input())
