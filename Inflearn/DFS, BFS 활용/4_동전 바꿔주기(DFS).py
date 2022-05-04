@@ -6,8 +6,10 @@ def DFS(L, sum):
     if L == k:
         if sum == T:
             cnt += 1
+    if sum > T:
+        return
     else:
-        for i in range(c[L]+1):
+        for i in range(c[L]):
             DFS(L+1, sum+(i*coin[L]))
 
 if __name__ == "__main__":
