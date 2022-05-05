@@ -25,3 +25,4 @@ if __name__ == "__main__":
     for _ in range(n):
         coin.append(int(input()))
     DFS(0)
+
