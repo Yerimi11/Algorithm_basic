@@ -14,6 +14,7 @@ for i in range(n):
     else:
         s += 1
         e -= 1
+print(res)
 
 # mid = n//2
 # temp = 0
