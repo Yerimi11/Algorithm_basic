@@ -32,3 +32,15 @@ for iy in range(7):
 print(cnt)
 
 # 회문 탐색 시 슬라이싱을 이용하는 방법도 있다!
+for i in range(3):
+    for j in range(7):
+        temp = G[j][i:i+5]
+        if temp == temp[::-1]:
+            cnt += 1
+        for k in range(2): # 세로줄 위, 아래 좁혀가며 회문 확인
+            if G[i+k][j] != G[i+5-k-1][j]:
+                break
+        else:
+            cnt+=1
+        
+print(cnt)
