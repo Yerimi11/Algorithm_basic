@@ -30,3 +30,5 @@ for iy in range(7):
     temp = []
 
 print(cnt)
+
+# 회문 탐색 시 슬라이싱을 이용하는 방법도 있다!
