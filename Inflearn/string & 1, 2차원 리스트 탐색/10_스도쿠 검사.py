@@ -1,6 +1,6 @@
 import sys
 # input = sys.stdin.readline
-sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/문자열&1,2차원리스트탐색/10. 스도쿠 검사/in5.txt", 'r')
+sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/문자열&1,2차원리스트탐색/10. 스도쿠 검사/in3.txt", 'r')
 
 G = []
 for _ in range(9):
@@ -26,7 +26,6 @@ for iy in range(9):
         sys.exit()
     temp = set()
 
-# 여기서도 sum이 아니라 set 사용해도 될 듯?
 sum = 0
 for i in range(0, 9, 3):
     for j in range(0, 9, 3):
@@ -37,5 +36,22 @@ for i in range(0, 9, 3):
             print("No")
             sys.exit()
         sum = 0
+
+# set 사용해도 될 듯(3X3)
+# for i in range(0, 9, 3):
+#     for j in range(0, 9, 3):
+#         temp.add(G[i][j])
+#         temp.add(G[i+1][j])
+#         temp.add(G[i+2][j])
+#         temp.add(G[i][j+1])
+#         temp.add(G[i+1][j+1])
+#         temp.add(G[i+2][j+1])
+#         temp.add(G[i][j+2])
+#         temp.add(G[i+1][j+2])
+#         temp.add(G[i+2][j+2])
+#         if len(temp) != 9:
+#             print("No")
+#             sys.exit()
+#         temp = set()
 
 print("Yes")
