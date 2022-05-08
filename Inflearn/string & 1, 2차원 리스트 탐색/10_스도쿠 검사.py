@@ -37,7 +37,7 @@ for i in range(0, 9, 3):
             sys.exit()
         sum = 0
 
-# set 사용해도 될 듯(3X3)
+# set 사용해도 될 듯(3X3) => 4중 for문을 해야 짧아질 듯!
 # for i in range(0, 9, 3):
 #     for j in range(0, 9, 3):
 #         temp.add(G[i][j])
