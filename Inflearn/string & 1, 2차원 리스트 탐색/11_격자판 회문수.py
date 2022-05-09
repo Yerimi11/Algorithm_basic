@@ -32,15 +32,32 @@ for iy in range(7):
 print(cnt)
 
 # 회문 탐색 시 슬라이싱을 이용하는 방법도 있다!
-for i in range(3):
-    for j in range(7):
-        temp = G[j][i:i+5]
-        if temp == temp[::-1]:
-            cnt += 1
-        for k in range(2): # 세로줄 위, 아래 좁혀가며 회문 확인
-            if G[i+k][j] != G[i+5-k-1][j]:
-                break
-        else:
-            cnt+=1
+# for i in range(3):
+#     for j in range(7):
+#         temp = G[j][i:i+5]
+#         if temp == temp[::-1]:
+#             cnt += 1
+#         for k in range(2): # 세로줄 위, 아래 좁혀가며 회문 확인
+#             if G[i+k][j] != G[i+5-k-1][j]:
+#                 break
+#         else:
+#             cnt+=1
         
-print(cnt)
+# print(cnt)
+
+
+# 또는
+# for i in range(7): #행, 열
+#     start = 0
+#     for _ in range(3):
+        
+#         if G[i][start]==G[i][start+4] and G[i][start+1]==G[i][start+3]:
+#             cnt+=1
+#         if G[start][i]==G[start+4][i] and G[start+1][i]==G[start+3][i]:
+#             cnt+=1
+            
+#         start+=1
+#         if start ==3:
+#             break
+
+# print(cnt)
