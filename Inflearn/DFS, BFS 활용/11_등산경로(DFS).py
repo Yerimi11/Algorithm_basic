@@ -1,9 +1,9 @@
 import sys
-sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/DFS,BFS활용/11. 등산경로/in2.txt","r")
+sys.stdin = open("/Users/yerim/Downloads/pythonalgorithm_formac/DFS,BFS활용/11. 등산경로/in5.txt","r")
 
 def DFS(x, y):
     global cnt
-    if (x, y) == (Ai, Bi): # n, n이 아니라 max(G)값의 좌표여야 함
+    if (x, y) == (Ai, Bi): # n, n이 아니라 G의 최댓값의 좌표여야 함
         cnt += 1
 
     else:
@@ -23,18 +23,20 @@ if __name__ == "__main__":
     cnt = 0
     dx = [-1, 0, 1, 0]
     dy = [0, 1, 0, -1]
-
-    # 최솟값에서 출발, 최댓값에 도착
-    ai, bi = G.index(min(G)), min(G).index(min(min(G)))
-    # s = G[ai][bi]
-
-    Ai, Bi = G.index(max(G)), max(G).index(max(max(G)))
-    # e = G[Ai][Bi]
     
-    # min, max로 하니까 사전순으로 큰/작은 줄이 뽑히네...
-    => 그냥 노가다로 하나하나 탐색해서 max, min 갱신하는 식으로 찾아야 할 듯?
+    max = -2147000000
+    min = 2147000000
+    # 최솟값에서 출발, 최댓값에 도착 => 노가다로 하나하나 탐색해서 max, min 갱신하는 식으로 찾아야 할 듯?
+    for i in range(n):
+        for j in range(n):
+            if G[i][j] > max: 
+                max = G[i][j]
+                Ai, Bi = i, j
+            if G[i][j] < min:
+                min = G[i][j]
+                ai, bi = i, j
 
-    
+
     ch[ai][bi] = 1
-    DFS(ai, bi) # 0,0이 아니라 min(G)값의 좌표여야 함
+    DFS(ai, bi) # 0, 0이 아니라 G의 최솟값의 좌표여야 함
     print(cnt)
