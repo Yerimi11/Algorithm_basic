@@ -9,3 +9,5 @@
     # reserve.pop(i)
 
 # https://rain-bow.tistory.com/30
+# 체육복을 적절히 빌려 최대한 많은 학생이 체육수업을 들어야한다 
+# => 최적해를 구하는 문제 - 그리디 판단
