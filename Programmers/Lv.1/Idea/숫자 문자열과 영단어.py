@@ -9,3 +9,8 @@
 # -> 상관 없는 듯
 
 # enumerate로 푸는 방법도 해보자
+
+def solution():
+    answer = 0
+    return answer
+    
