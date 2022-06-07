@@ -9,3 +9,7 @@
 # 모든 i열에서 moves j번째를 탐색, 0은 pass하고 
 # 숫자가 나오면 0으로 바꾼 후 바구니 스택에 넣는다. 
 # 스택[-1]과 바구니에 넣을 숫자가 같다면 둘 다 pop후 cnt += 2
+
+def solution():
+    answer = 0
+    return answer
