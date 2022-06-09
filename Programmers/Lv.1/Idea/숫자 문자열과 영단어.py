@@ -10,7 +10,8 @@
 
 # enumerate로 푸는 방법도 해보자
 
-def solution():
+def solution(s):
     answer = 0
     return answer
+    
     

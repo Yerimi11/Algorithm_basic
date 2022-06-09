@@ -1,8 +1,56 @@
 def solution(new_id):
+
+    # 1
+    new_id = new_id.lower()
+
+    # 2
+    id = ''
+    for x in new_id:
+        if x.islower() == True:
+            id += x
+        if x.isdecimal() == True:
+            id += x
+        if x == '-' or x == '_' or x == '.':
+            id += x
+    
+    # 3
+    temp = []
+    for x in id:
+        if len(temp) == 0:
+            temp.append(x)
+        else:
+            if temp[-1] == '.' and x == '.':
+                temp.pop()
+            temp.append(x)
+    
+    # 4
+    if len(temp) >= 1 and temp[0] == '.':
+        temp.pop(0)
+    if len(temp) >= 1 and temp[-1] == '.':
+        temp.pop()
+    
+    # 5
+    if len(temp) == 0:
+        temp.append('a')
+
+    # 6
+    while len(temp) >= 16:
+        temp.pop()
+        if len(temp) == 15:
+            if temp[-1] == '.':
+                temp.pop()
+            break
+
+    # 7
+    while 0 < len(temp) <= 2:
+        if len(temp) == 3:
+            break
+        temp.append(temp[-1])
+    # 끝자리가 . 이면 반복 못할 것임
+
+    # finish
     answer = ''
+    for x in temp:
+        answer += x
+
     return answer
-
-
-# 3단계 -> 스택을 사용해서, 스택[-1]과 ID[0]이 둘 다 '.'이면 하나 pop하기
-# 혹은 for문으로 문자 하나씩 보면서 마지막에 temp에 넣고, 다음 루프를 돌 때 if 문자 == '.'이면 temp도 '.'인지 체크 후 pop 처리 -> 다음 루프 돌 때 문제 없나?
-
