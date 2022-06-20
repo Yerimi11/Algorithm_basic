@@ -1,3 +1,5 @@
+# 시간초과
+
 import queue
 D = ((-1, 0), (1, 0), (0, -1), (0, 1)) # 상하좌우
 
@@ -32,7 +34,7 @@ def check(place):
     for r in range(5):
         for c in range(5):
             if place[r][c] == 'P':
-                if bfs(place, r, c) = False:
+                if bfs(place, r, c) == False:
                     return False
     return True
     
