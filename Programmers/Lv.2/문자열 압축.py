@@ -4,21 +4,38 @@ def solution(s):
 
     # 스택 길이로 저장하며 체크하지 말고, 최대길이 1부터 1씩 증가하며 쭉 찾아보고 최종 길이 min을 갱신
     
-    stack = []
     mlen = 2147000000
     cnt = 0
-    result = []
     while cnt <= len(s):
+        result = ""
+        stack = []
+        cut = 0
+        cut_temp = ""
         cnt += 1
         st = ""
-        temp = s[0:cnt+1]
-        for x in s:
+        for x in s:        
             stack.append(x)
-            st = ''.join(stack[0:cnt+1])
-            if st == temp:
-                result.append(st)
+            if cnt == 1:
+                st = x
+                temp = x
             else:
+                st = ''.join(stack[0:cnt+1])
+                temp = s[s.index(x):s.index(x)+cnt]
+            if st == temp:
+                if cnt > 1 :
+                    cut += 1
+                    cut_temp = st
+                    stack = []
+                    # result += str(cut)
+                # result += st
+            else:
+
+                if cut > 1:
+                    result += str(cut)
+                    cut = 0
+                    result += cut_temp
                 continue
+                    
         mlen = min(mlen, len(result))
 
     print(mlen)
