@@ -13,8 +13,3 @@ def solution(numbers, target):
     return answer
 
 solution([4, 1, 2, 1], 3)
-
-
-
-
-
