@@ -11,7 +11,7 @@
               4개     4개
 이걸 우선순위큐로..?
 튜플로 집어넣어서 최대힙으로 정렬시키고
-h1이 d1보다 크나 같고, o1이 d2보다 작거나 같을 때 cnt+=1
+h1이 d1보다 크거나 같고, o1이 d2보다 작거나 같을 때 cnt+=1
 else: 걸쳐지거나 d선분에 포함되지 않는 튜플은 힙에서 삭제
 모든 roads의 원소를 순회하고 힙의 최대길이를 출력
 
@@ -19,9 +19,22 @@ import sys
 import heapq as hq
 input = sys.stdin.readline
 n = int(input())
-li = []
+roads = []
 for i in range(n):
     s, e = map(int, input().split())
-    hq.heappush(li, (s, e))
+    hq.heappush(roads, (s, e))
+d = int(input())
 
+roads.sort()
+cnt = 0
+result = []
+for i in range(len(roads)):
+    temp = roads 
+    for s, e in temp:
+        if s >= temp[i] and e <= temp[i] + d:
+            cnt += 1
+        else:
+            hq.heappop(temp, (s, e))
+    result.append(len(temp))
 
+print(result)
