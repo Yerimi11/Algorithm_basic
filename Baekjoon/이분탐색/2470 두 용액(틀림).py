@@ -1,5 +1,5 @@
 # 범위가 10억, 10억으로 아주 크니 이분탐색
-# 우선 정렬을 한다
+# 우선 정렬한다
 
 import sys
 input = sys.stdin.readline
