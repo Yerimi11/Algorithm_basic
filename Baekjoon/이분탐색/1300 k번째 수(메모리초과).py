@@ -15,10 +15,6 @@ for i in range(n):
 B.sort()
 
 print(B[k])
-# l, r = 0, len(B)-1
-# for i in range(len(B)):
-#     mid = (l+r) // 2
-#     if k >= B[mid]:
 
 # 메모리초과! A배열 선언하지 않고, 이분탐색과 k를 관련지어보여 생각해볼 것
 
