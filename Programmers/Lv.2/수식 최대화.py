@@ -1,6 +1,8 @@
+# n의 갯수가 최대 100개, 중간중간 연산자가 들어가니 숫자를 최대 50개
+# 그러면 50 * 3! 해서 시간복잡도는 300정도로 작으니, 완전탐색으로 풀기 가능!
+
 from itertools import permutations as perm
 from collections import deque
-
 
 def solution(expression):
     answer = 0
