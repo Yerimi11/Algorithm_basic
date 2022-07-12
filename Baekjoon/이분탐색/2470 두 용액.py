@@ -12,12 +12,15 @@ li.sort()
 
 l, r = 0, len(li)-1
 a, b = li[l], li[r]
-temp = 2147000000
+min_result = 2147000000
 while l < r:
     s = li[l]+li[r]
-    if abs(s) < abs(temp):
-        temp = min(temp, s)
+    if abs(s) < abs(min_result):
+        # min_result = min(min_result, s) # s가 갱신되어야 함
+        min_result = s
         a, b = li[l], li[r]
+
+    if s < 0:
         l = l+1
     else:
         r = r-1

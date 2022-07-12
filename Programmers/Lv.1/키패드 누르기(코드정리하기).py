@@ -9,37 +9,37 @@ key_xy = {'1':(0,0), '2':(0,1), '3':(0,2), '4':(1,0), '5':(1,1), '6':(1,2), '7':
         
 def solution(numbers, hand):
     answer = ''
-    L_h = (3,0)
-    R_h = (3,2)
+    L_hand = (3,0)
+    R_hand = (3,2)
     for n in numbers:
         n = str(n)
-        L_x, L_y = L_h[0], L_h[1]
-        R_x, R_y = R_h[0], R_h[1]
+        L_x, L_y = L_hand[0], L_hand[1]
+        R_x, R_y = R_hand[0], R_hand[1]
         
         if n == '1' or n == '4' or n == '7' or n == '*':
-            L_h = key_xy[n]
+            L_hand = key_xy[n]
             answer += 'L'
             
         elif n == '3' or n == '6' or n == '9' or n == '#':
-            R_h = key_xy[n]
+            R_hand = key_xy[n]
             answer += 'R'
 
         else:
-        #     # 왼오 손가락 위치와 이동해야할 키패드와의 i, j 거리 비교 후
-        #     # 왼,오 중에 더 거리 가까운 손가락이 움직이고 거리 같다면 hand잡이로 이동 후 손가락 좌표 갱신
+            # 왼오 손가락 위치와 이동해야할 키패드와의 i, j 거리 비교 후
+            # 왼,오 중에 더 거리 가까운 손가락이 움직이고 거리 같다면 hand잡이로 이동 후 손가락 좌표 갱신
             x, y = key_xy[n][0], key_xy[n][1]
             if (abs(L_x-x)+abs(L_y-y)) > (abs(R_x-x)+abs(R_y-y)):
-                R_h = key_xy[n]
+                R_hand = key_xy[n]
                 answer += 'R'
             elif (abs(L_x-x)+abs(L_y-y)) < (abs(R_x-x)+abs(R_y-y)):
-                L_h = key_xy[n]
+                L_hand = key_xy[n]
                 answer += 'L'
             else:
                 if hand == "right":
-                    R_h = key_xy[n]
+                    R_hand = key_xy[n]
                     answer += 'R'
                 else:
-                    L_h = key_xy[n]
+                    L_hand = key_xy[n]
                     answer += 'L'
         
     return answer
