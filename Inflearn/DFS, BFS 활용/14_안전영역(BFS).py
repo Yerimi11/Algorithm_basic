@@ -34,7 +34,7 @@ if __name__ == "__main__":
         visited = [[0]*n for _ in range(n)]
         for i in range(n):
             for j in range(n):
-                if arr[i][j] > rain  and visited[i][j] == 0:
+                if arr[i][j] > rain and visited[i][j] == 0:
                     BFS(i, j)
                     cnt += 1
         res = max(cnt, res)
