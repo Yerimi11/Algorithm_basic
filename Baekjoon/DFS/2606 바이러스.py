@@ -33,29 +33,29 @@ if __name__ == "__main__":
 
 
 # DFS
-# import sys
-# input = sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
-# def DFS(i, graph, visited):
-#     global cnt
-#     visited[i] = 1
-#     for x in range(1, n+1):
-#         if graph[i][x] == 1 and visited[x] == 0:
-#             DFS(x, graph, visited)
-#             cnt += 1
-#     return cnt
+def DFS(i, graph, visited):
+    global cnt
+    visited[i] = 1
+    for x in range(1, n+1):
+        if graph[i][x] == 1 and visited[x] == 0:
+            DFS(x, graph, visited)
+            cnt += 1
+    return cnt
 
-# if __name__ == "__main__":
-#     n = int(input())
-#     m = int(input())
-#     graph = [[0]*(n+1) for _ in range(n+1)]
-#     for i in range(m):
-#         start, end = map(int, input().split())
-#         graph[start][end], graph[end][start] = 1, 1
-#     visited = [0] * (n+1) # 방문한 컴퓨터 수를 출력해야하므로 visited 에 True/False가 아닌 0/1로 처리
-#     cnt = 0
-#     DFS(1, graph, visited)
-#     print(cnt)
+if __name__ == "__main__":
+    n = int(input())
+    m = int(input())
+    graph = [[0]*(n+1) for _ in range(n+1)]
+    for i in range(m):
+        start, end = map(int, input().split())
+        graph[start][end], graph[end][start] = 1, 1
+    visited = [0] * (n+1) # 방문한 컴퓨터 수를 출력해야하므로 visited 에 True/False가 아닌 0/1로 처리
+    cnt = 0
+    DFS(1, graph, visited)
+    print(cnt)
 
 
 # def DFS(i):
