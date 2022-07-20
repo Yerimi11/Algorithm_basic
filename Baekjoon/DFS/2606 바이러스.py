@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
 
 
-# DFS
+# DFS (1)
 import sys
 input = sys.stdin.readline
 
@@ -58,28 +58,29 @@ if __name__ == "__main__":
     print(cnt)
 
 
-# def DFS(i):
-#     global cnt
-#     visited[i] = 1
-#     for x in graph[i]:
-#         if visited[x] == 0:
-#             DFS(x)
-#             cnt += 1
-#     return cnt
+# DFS (1)
+def DFS(i):
+    global cnt
+    visited[i] = 1
+    for x in graph[i]:
+        if visited[x] == 0:
+            DFS(x)
+            cnt += 1
+    return cnt
 
 
-# if __name__ == "__main__":
-#     n = int(input())
-#     m = int(input())
-#     graph = [[]*n for _ in range(n+1)]
-#     for i in range(m):
-#         start, end = map(int, input().split())
-#         graph[start].append(end)
-#         graph[end].append(start)
-#     visited = [0] * (n+1) # 방문한 컴퓨터 수를 출력해야하므로 visited 에 True/False가 아닌 0/1로 처리
-#     cnt = 0
-#     DFS(1)
-#     print(cnt)
+if __name__ == "__main__":
+    n = int(input())
+    m = int(input())
+    graph = [[]*n for _ in range(n+1)]    # => 연결 정보만 담기 때문에 중간에 0, 1 판단 안해도 되고, 공간복잡도도 down
+    for i in range(m):
+        start, end = map(int, input().split())
+        graph[start].append(end)
+        graph[end].append(start)
+    visited = [0] * (n+1) # 방문한 컴퓨터 수를 출력해야하므로 visited 에 True/False가 아닌 0/1로 처리
+    cnt = 0
+    DFS(1)
+    print(cnt)
 
 
 # 0706
