@@ -2,6 +2,7 @@
 # 1. 한 번에 한 개의 알파벳만 바꿀 수 있습니다.
 # 2. words에 있는 단어로만 변환할 수 있습니다.
 # https://github.com/Yerimi11/Algorithm_yerim/blob/main/Programmers/Lv.2/%EB%8B%A8%EC%96%B4%20%EB%B3%80%ED%99%98.py
+# 복습시 : 어떻게 풀어야 할 지 그림 그리기, Visited가 왜 필요한지 생각
 
 # begin에서 target으로 변환하는 '가장 짧은 변환 과정'을 찾으려고 합니다.
 # 1. 한 번에 한 개의 알파벳만 바꿀 수 있습니다.
@@ -42,6 +43,7 @@ def solution(begin, target, words):
 
 solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
 
+# visited 유무로 속도 차이 20배 남 (있는게 빠름)
 
 # # begin에서 target으로 변환하는 가장 짧은 변환 과정을 찾으려고 합니다.
 # # 1. 한 번에 한 개의 알파벳만 바꿀 수 있습니다.

@@ -1,39 +1,40 @@
-# 시간초과
+# 큐를 덱으로 바꾸니 시간초과 해결 됨
 
-import queue
+from collections import deque
+
 D = ((-1, 0), (1, 0), (0, -1), (0, 1)) # 상하좌우
 
 def bfs(place, row, col):
     visited = [[False for _ in range(5)] for _ in range(5)]
-    q = queue.Queue()
+    q = deque()
     visited[row][col] = True
-    q.put((row, col, 0))
+    q.append((row, col, 0))
 
     while q:
-        cur = q.get()
+        r, c, m_dis = q.popleft() # r, c, manhattan distance
         
-        if cur[2] > 2:
+        if m_dis > 2:
             continue
-        if cur[2] != 0 and place[cur[0]][cur[1]] == 'P':
+        if m_dis != 0 and place[r][c] == 'P':
             return False
 
         for i in range(4):
-            nr = cur[0] + D[i][0]
-            nc = cur[1] + D[i][1]
+            nr = r + D[i][0]
+            nc = c + D[i][1]
             if nr < 0 or nr > 4 or nc < 0 or nc > 4:
                 continue
             if visited[nr][nc]:
                 continue
-            if place[nr][nc] == 'X':
+            if place[nr][nc] == 'X': # 파티션 체크
                 continue
-            visited[nr][nc] = True
-            q.put((nr, nc, cur[2] + 1))
+            visited[nr][nc] = True # 빈 테이블일 때
+            q.append((nr, nc, m_dis + 1))
     return True
 
 def check(place):
     for r in range(5):
         for c in range(5):
-            if place[r][c] == 'P':
+            if place[r][c] == 'P': # 사람일 때만 BFS돌림
                 if bfs(place, r, c) == False:
                     return False
     return True
@@ -49,6 +50,9 @@ def solution(places):
             answer.append(0)
 
     return answer
+
+
+# https://www.youtube.com/watch?v=hCVgKE6qwFs
 
 
 # https://www.youtube.com/watch?v=hCVgKE6qwFs
