@@ -1,5 +1,6 @@
 # n^3 => 3000^3 = 81,000,000,000,000 세제곱은 안돼!
 # i 하나 축으로 고정(O(n)) * 나머지 두 수는 투포인터(O(n))로 돌며 합 계산 = O(n^2)
+# .sort() 정렬은 O(nlogn)
 
 class Solution(object):
     def threeSum(self, nums):
