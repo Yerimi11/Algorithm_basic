@@ -1,3 +1,6 @@
+import sys
+
+# 현재 값이 우측으로 이동하면서 저점과 차이 계산
 class Solution(object):
     def maxProfit(self, prices):
         """
