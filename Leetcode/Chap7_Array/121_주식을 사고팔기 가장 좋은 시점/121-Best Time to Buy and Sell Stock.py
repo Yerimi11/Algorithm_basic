@@ -20,3 +20,20 @@ class Solution(object):
         return profit
         
         # 시간복잡도 O(n)
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        # 현재 값이 우측으로 이동하면서 저점과 차이 계산
+        min_ = float('inf')
+        diff = 0
+        for i in range(len(prices)):
+            curr = prices[i]
+            # if min_ > curr:
+            #     min_ = curr
+            min_ = min(min_, curr)
+            
+            temp = curr - min_
+            # if temp > diff:
+            #     diff = temp
+            diff = max(temp, diff) # 비교문 안쓰고 한 줄로 정리 가능!
+        return diff
