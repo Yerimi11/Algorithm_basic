@@ -4,13 +4,16 @@
 # 2. 만약에 leftheap의 루트가 rightheap의 루트보다 크면 leftheap의 루트와 rightheap의 루트를 바꿔준다.
 # why? leftheap은 중간값을 기준으로 작은 수가 들어가는 곳이다. 그런데 leftheap의 루트가 rightheap보다 크다면, 중간값보다 큰 수가 leftheap에 들어가있는 상황이기에 leftheap의 루트와 rightheap의 루트를 바꿔준다.
 
+# leftheap이 최대힙인 이유는, leftheap에 들어간 수는 중간값보다 작은 수이다. 그 작은 수 중에서 가장 큰 값이 중간값이 되기 때문에 루트가 최댓값이 되는 최대 힙을 사용한다. 
+# 반대로 rightheap같은 경우 중간 값보다 큰 수 들이 들어가고 그 수 중에서 가장 작은 수가 중간 값 다음에 나와야 하기 때문에 가장 작은 수가 루트가 되는 최소 힙을 사용한다.
+
 import sys
 import heapq as hq
 
 n = int(sys.stdin.readline())
 
-left_heap = []
-right_heap = []
+left_heap = [] # 최대힙
+right_heap = [] # 최소힙
 answer = []
 for i in range(n):
 
