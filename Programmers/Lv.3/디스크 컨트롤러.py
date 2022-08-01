@@ -21,3 +21,5 @@ def solution(jobs):
             now += 1
                 
     return answer // len(jobs)
+
+solution([[0, 3], [1, 9], [2, 6]]) # 9
