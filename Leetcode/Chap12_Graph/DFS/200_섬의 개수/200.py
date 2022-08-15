@@ -20,3 +20,35 @@ class Solution(object):
                     count += 1
                     dfs(grid, i, j)
         return count
+
+
+# - BFS로 접근해봤는데, 마무리가 잘 안됨. 30분 코드 쳐보다가 풀이 찾아봄.
+    # → BFS는 보통 최단거리를 탐색하는데 쓰이므로, DFS를 이용하여 섬을 찾는게 어떨까?
+# from collections import deque
+# class Solution:
+#     def numIslands(self, grid: List[List[str]]) -> int:
+#         queue = deque()
+#         m, n = len(grid[0]), len(grid)
+#         dx = [-1, 0, 1, 0]
+#         dy = [0, 1, 0, -1]
+#         visited = [[0]*m for _ in range(n)]
+#         cnt = 0
+#         # queue.append((0,0))
+#         def bfs(x,y):
+#             nonlocal cnt
+#             while queue:
+#                 x, y = queue.popleft()
+#                 for i in range(4):
+#                     xx = dx[i] + x
+#                     yy = dx[i] + y
+#                     if 0<=xx<n and 0<=yy<m and visited[xx][yy] == 0:
+#                         visited[xx][yy] == 1
+#                         queue.append((xx,yy))
+#                     else:
+#                         cnt += 1
+#         for x in range(n):
+#             for y in range(m):
+#                 if grid[x][y] == 1 and visited[x][y] == 0:
+#                     visited[x][y] == 1
+#                     bfs(x,y)
+#         return cnt
