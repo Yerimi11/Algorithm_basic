@@ -1,3 +1,4 @@
+# 파알인 p.358~ 보기! (리트코드 322)
 def solution(tickets):
     # 해쉬테이블로 정리
     airports = {}
@@ -27,7 +28,7 @@ def solution(tickets):
 
         # start = icn
         # solution([["ICN", "A"], ["ICN", "B"], ["B", "ICN"]]) 
-        # 인천 - B - 인천 - A면 성립하는데, 인천 - A 로 가면 성립이 안되버리니까 조건 추가
+        # 인천 - B - 인천 - A면 성립하는데, 인천 - A 로 가면 성립이 안되버리니까 ㅌ조건 추가
         # if start in airports:
         #     for index, dest in enumerate(airports[start]):
         #         # dest = atl, sfo 

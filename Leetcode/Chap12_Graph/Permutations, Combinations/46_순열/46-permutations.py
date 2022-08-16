@@ -1,21 +1,43 @@
-class Solution(object):
-    def permute(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[List[int]]
-        """
-        return list(itertools.permutations(nums))
+def permute(nums):
+        visited = [0]*len(nums)
+        per = []
+        result = []
+        def dfs():
+                nonlocal per
+                if len(per) == len(nums):
+                        result.append(per[:])
+                        return
+                for i in range(len(nums)):
+                        if visited[i] == 0:
+                                visited[i] = 1
+                                per.append(nums[i])
+                                dfs()
+                                visited[i] = 0
+                                per.pop()
+                    
+        # if len(nums) == 1:
+        #         result.append(nums)
+        # else:
+        dfs()
+        return result
+permute([1])
+
+# class Solution(object):
+#     def permute(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: List[List[int]]
+#         """
+#         return list(itertools.permutations(nums))
     
     
 # 2----------------------------------------------------------------     
 
-        """
-        Level0: []
-        level1: [1]                  [2]              [3]
-        level2: [1,2]    [1,3]       [2,1] [2,3]      [3,1] [3,2]
-        level3: [1,2,3]  [1,3,2]     [2,1,3][2,3,1]   [3,1,2][3,2,1]          
+        # Level0: []
+        # level1: [1]                  [2]              [3]
+        # level2: [1,2]    [1,3]       [2,1] [2,3]      [3,1] [3,2]
+        # level3: [1,2,3]  [1,3,2]     [2,1,3][2,3,1]   [3,1,2][3,2,1]          
 
-        """
 
 #         def permute(self, nums: List[int]) -> List[List[int]]:
 #             visited = set()
