@@ -26,7 +26,7 @@ def BFS(s):
         if visited_2[e] == 0 and graph[s][e] == 1:
             visited_2[e] = 1
             print(e, end=' ')
-        # 3으로 출발했으니 3->4나 3->1로 가야하는데, input받은 순서의 방향대로 가고 있는 에러
+# ex2에러) 3으로 출발했으니 3->4나 3->1로 가야하는데, input받은 순서의 방향대로 가고 있는 에러
 
 
 DFS(v)
