@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def rangeSumBST(self, root, L, R):
+    def rangeSumBST(self, root, low, high):
         """
         :type root: TreeNode
         :type low: int
@@ -17,9 +17,9 @@ class Solution(object):
         def dfs(node):
             if not node:
                 return 0
-            if node.val < L:
+            if node.val < low:
                 return dfs(node.right)
-            elif node.val > R:
+            elif node.val > high:
                 return dfs(node.left)
             return node.val + dfs(node.left) + dfs(node.right)
         
