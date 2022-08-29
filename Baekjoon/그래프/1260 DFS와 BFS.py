@@ -9,7 +9,7 @@ queue = deque()
 for i in range(m):
     s, e = map(int, input().split())
     graph[s][e], graph[e][s] = 1, 1
-    queue.append((s, e))
+    queue.append(s)
 
 def DFS(s):
     visited_1[s] = 1
@@ -21,11 +21,28 @@ def DFS(s):
 def BFS(s):
     visited_2[s] = 1
     print(s, end=' ')
-    while queue:
-        s, e = queue.popleft()
-        if visited_2[e] == 0 and graph[s][e] == 1:
-            visited_2[e] = 1
-            print(e, end=' ')
+    while queue: # 정렬을 어디서 해야하지?
+        now = queue.popleft()
+        print(now, end=' ')
+        # for idx, x in enumerate(graph[now]):
+        #     if x == 1 and visited_2[idx] == 1:
+        #         print(idx, end=' ')
+        for i in graph[now]:
+            if visited_2[i] == 0:
+                queue.append(i)
+                visited_2 = 1
+
+
+        # if queue[0] == s:
+        #     s = queue.popleft()
+        #     for i in range(1, n+1):
+        #         if visited_2[i] == 0 and graph[s][i] == 1:
+        #             visited_2[i] = 1
+        #             print(i, end=' ')
+        # elif s not in queue:
+            
+        # else:
+        #     queue.append(queue.popleft())
 # ex2에러) 3으로 출발했으니 3->4나 3->1로 가야하는데, input받은 순서의 방향대로 가고 있는 에러
 
 

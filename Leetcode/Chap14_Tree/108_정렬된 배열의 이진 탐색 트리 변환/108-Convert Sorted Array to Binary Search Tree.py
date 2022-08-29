@@ -1,3 +1,5 @@
+
+# 오름차순 정렬이 된 상태로 주어진다.
 # Definition for a binary tree node.
 # class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
