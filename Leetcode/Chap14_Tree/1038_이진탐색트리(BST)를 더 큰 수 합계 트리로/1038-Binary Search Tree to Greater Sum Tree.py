@@ -8,31 +8,13 @@
 class Solution:
     greater_sum = 0
     def bstToGst(self, root: TreeNode) -> TreeNode:
-        # 오른쪽 자식부터 운행하는 중위 순회
-        if not root.val:
-            return null 
-        
-        if root.right:
-            a = self.bstToGst(root.right)
-            self.greater_sum += a
-            return self.greater_sum
-        
-        self.greater_sum += root.val
-        # return self.greater_sum
-        
-        if root.left:
-            a = self.bstToGst(root.left)
-            self.greater_sum += a
-            return self.greater_sum
-        
-        # if root:
-        #     self.bstToGst(root.right)
-        #     self.greater_sum += root.val
-        #     root.val = self.greater_sum
-        #     self.bstToGst(root.left)
-        # return root
-
-
+        # 오른쪽 자식부터 운행하는 중위 순회        
+        if root:
+            self.bstToGst(root.right)
+            self.greater_sum += root.val
+            root.val = self.greater_sum
+            self.bstToGst(root.left)
+        return root
 # # Definition for a binary tree node.
 # # class TreeNode(object):
 # #     def __init__(self, val=0, left=None, right=None):
