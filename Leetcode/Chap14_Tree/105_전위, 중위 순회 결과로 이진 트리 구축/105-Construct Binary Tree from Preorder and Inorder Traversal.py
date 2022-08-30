@@ -33,7 +33,7 @@ class Solution(object):
         
         if inorder:
             # preorder.pop(0) => 프리오더의 루트 를 인오더에서 찾아서 index로 한다
-            index = inorder.index(preorder.pop(0))
+            index = inorder.index(preorder.pop(0)) # 파이썬 리스트에서의 pop(0)은 시간복잡도가 O(n)이므로 주의
             
             # 중위 순회 결과 분할 정복
             node = TreeNode(inorder[index]) # 인오더의 루트로 새 노드 만들어서 시작함
