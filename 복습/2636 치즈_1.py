@@ -1,4 +1,4 @@
-# 0을 bfs로 탐색해서 1을 만나면 visited에 체크 후 back한다
+# 0을 bfs 상하좌우로 탐색해서 1을 만나면 visited에 체크 후 back한다
 # bfs 한 번이 끝나면 체크해둔 칸들을 한 번에 0으로 바꾼다
 from collections import deque
 import sys
