@@ -1,3 +1,4 @@
+# 파알인 p.363
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # 양방향이면 안된다 -> 순환 구조인지 판별하는 문제이다
@@ -44,10 +45,13 @@ class Solution:
         return True
         
         
+        
+        
+        
         # n = (numCourses-1)개의 수업 visited, prerequisites로 단방향 인접행렬그래프 만들고 나서 BFS
         # if 1->0로 가면서 1과 0에 visit을 찍고 0으로 넘어갔는데, 다음 0->1에서 이동시 목적지인 1에 visit이
         # 이미 찍여있는 경우 순환되는 양방향으로 판단, False를 반환한다.
-
+        
 #         visited = [0]*numCourses
 #         graph = list(([0]*(numCourses)) for _ in range(numCourses))
 #         queue = deque(prerequisites)
