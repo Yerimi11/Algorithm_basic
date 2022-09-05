@@ -1,3 +1,5 @@
+# https://school.programmers.co.kr/learn/courses/30/lessons/118666
+
 def makeResult(personal, a, b):
     if personal[a] >= personal[b]:
         return a
@@ -11,12 +13,12 @@ def solution(survey, choices):
     answer = ''
     
     for i in range(len(survey)): # survey[i] = "AN"
-        if choices[i] > 4:
+        if choices[i] > 4:  # 2번째 문자에 해당되는 유형에 점수를 더한다
             personal[survey[i][1]] += scores[choices[i]]
-        else:
+        else:               # 1번째 문자에 해당되는 유형에 점수를 더한다
             personal[survey[i][0]] += scores[choices[i]]
 
-            
+    # 지표별로 성격 유형을 판단한다        
     answer += makeResult(personal, "R", "T")
     answer += makeResult(personal, "C", "F")
     answer += makeResult(personal, "J", "M")
