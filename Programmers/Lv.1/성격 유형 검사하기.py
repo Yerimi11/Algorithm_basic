@@ -1,9 +1,8 @@
-# def makeResult(personal, a, b, answer):
-#     if personal[a] >= personal[b]:
-#         answer += a
-#     else:
-#         answer += b
-#     return answer
+def makeResult(personal, a, b):
+    if personal[a] >= personal[b]:
+        return a
+    else:
+        return b
 
 def solution(survey, choices):
     # 사전순
@@ -16,35 +15,36 @@ def solution(survey, choices):
             personal[survey[i][1]] += scores[choices[i]]
         else:
             personal[survey[i][0]] += scores[choices[i]]
+
             
-    # makeResult(personal, "R", "T", answer)
-    # makeResult(personal, "C", "F", answer)
-    # makeResult(personal, "J", "M", answer)
-    # makeResult(personal, "A", "N", answer)
+    answer += makeResult(personal, "R", "T")
+    answer += makeResult(personal, "C", "F")
+    answer += makeResult(personal, "J", "M")
+    answer += makeResult(personal, "A", "N")
 
-    # R-T
-    if personal["R"] >= personal["T"]:
-        answer += 'R'
-    else:
-        answer += 'T'
+#     # R-T
+#     if personal["R"] >= personal["T"]:
+#         answer += 'R'
+#     else:
+#         answer += 'T'
         
-    # C-F
-    if personal["C"] >= personal["F"]:
-        answer += 'C'
-    else:
-        answer += 'F'
+#     # C-F
+#     if personal["C"] >= personal["F"]:
+#         answer += 'C'
+#     else:
+#         answer += 'F'
 
-    # J-M
-    if personal["J"] >= personal["M"]:
-        answer += 'J'
-    else:
-        answer += 'M'
+#     # J-M
+#     if personal["J"] >= personal["M"]:
+#         answer += 'J'
+#     else:
+#         answer += 'M'
         
-    # A-N
-    if personal["A"] >= personal["N"]:
-        answer += 'A'
-    else:
-        answer += 'N'
+#     # A-N
+#     if personal["A"] >= personal["N"]:
+#         answer += 'A'
+#     else:
+#         answer += 'N'
     
     
     return answer
