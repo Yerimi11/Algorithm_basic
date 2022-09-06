@@ -6,51 +6,46 @@ def solution(new_id):
     # 2
     id = ''
     for x in new_id:
-        if x.islower() == True:
-            id += x
-        if x.isdecimal() == True:
-            id += x
-        if x == '-' or x == '_' or x == '.':
+        if x.islower() or x.isdecimal() or x == '-' or x == '_' or x == '.':
             id += x
     
-    # 3
-    temp = []
+    # 3 - 슬라이싱 이용도 될 것 같은데
+    tempId = []
     for x in id:
-        if len(temp) == 0:
-            temp.append(x)
+        if len(tempId) == 0:
+            tempId.append(x)
         else:
-            if temp[-1] == '.' and x == '.':
-                temp.pop()
-            temp.append(x)
+            if tempId[-1] == '.' and x == '.':
+                tempId.pop()
+            tempId.append(x)
     
-    # 4
-    if len(temp) >= 1 and temp[0] == '.':
-        temp.pop(0)
-    if len(temp) >= 1 and temp[-1] == '.':
-        temp.pop()
+    # 4 - if문을 합치거나, pop을 슬라이싱으로 바꾸면 일부 테케에서 틀린다. 왜지?
+    if len(tempId) >= 1 and tempId[0] == '.':
+        tempId.pop(0)
+    if len(tempId) >= 1 and tempId[-1] == '.':
+        tempId.pop()
     
     # 5
-    if len(temp) == 0:
-        temp.append('a')
+    if len(tempId) == 0:
+        tempId.append('a')
 
     # 6
-    while len(temp) >= 16:
-        temp.pop()
-        if len(temp) == 15:
-            if temp[-1] == '.':
-                temp.pop()
+    while len(tempId) >= 16:
+        tempId.pop()
+        if len(tempId) == 15:
+            if tempId[-1] == '.':
+                tempId.pop()
             break
 
     # 7
-    while 0 < len(temp) <= 2:
-        if len(temp) == 3:
+    while 0 < len(tempId) <= 2:
+        if len(tempId) == 3:
             break
-        temp.append(temp[-1])
-    # 끝자리가 . 이면 반복 못할 것임
+        tempId.append(tempId[-1])
 
     # finish
     answer = ''
-    for x in temp:
+    for x in tempId:
         answer += x
 
     return answer
