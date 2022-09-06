@@ -1,0 +1,5 @@
+# 애너그램 : ex) 문전박대 -> 대박전문
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
