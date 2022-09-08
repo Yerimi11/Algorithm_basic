@@ -3,6 +3,7 @@ def solution(queue1, queue2):
     queue1 = deque(queue1)
     queue2 = deque(queue2)
     
+    # sum()을 for문 안에서도 사용하게 될 경우 시간초과가 나게 된다.
     sum1 = sum(queue1)
     sum2 = sum(queue2)
     mid = (sum1+sum2) // 2 
