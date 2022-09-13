@@ -1,4 +1,3 @@
-# https://www.youtube.com/watch?v=zpz8SMzwiHM
 from operator import itemgetter
 
 def solution(food_times, k):
@@ -23,6 +22,7 @@ def solution(food_times, k):
         n -= 1
     return -1
 
+# https://www.youtube.com/watch?v=zpz8SMzwiHM
 
 # def solution(food_times, k):
 #     times = {}
