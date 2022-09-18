@@ -6,23 +6,12 @@
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/42890#
 
-def solution(relation):
-    answer_list = list()
-    for i in range(1, 1 << len(relation[0])):
-        tmp_set = set()
-        for j in range(len(relation)):
-            tmp = ''
-            for k in range(len(relation[0])):
-                if i & (1 << k):
-                    tmp += str(relation[j][k])
-            tmp_set.add(tmp)
+[["a", "1", "aaa", "c", "ng"], 
+ ["a", "1", "bbb", "e", "g"], 
+ ["c", "1", "aaa", "d", "ng"], 
+ ["d", "2", "bbb", "d", "ng"]]  >>>> 5
+(1,3), (1,4), (1,5), (2,4), (3,4)
+# (1,2,3), (1,3,4).. 이런 것 다 되지만 최소 갯수여야하니 pass
 
-        if len(tmp_set) == len(relation):
-            not_duplicate = True
-            for num in answer_list:
-                if (num & i) == num:
-                    not_duplicate = False
-                    break
-            if not_duplicate:
-                answer_list.append(i)
-    return len(answer_list)
+# combination으로 열 조합을 찾아낸다. 조합 갯수는 1개부터(학번 하나로도 되니까)
+# for문으로 행을 돌면서 열 조합에 나온 행의 인덱스를 해쉬 키-밸류로 넣어서 비교
