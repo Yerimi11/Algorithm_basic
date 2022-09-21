@@ -6,11 +6,11 @@
 
 # https://school.programmers.co.kr/learn/courses/30/lessons/42890#
 
-[["a", "1", "aaa", "c", "ng"], 
- ["a", "1", "bbb", "e", "g"], 
- ["c", "1", "aaa", "d", "ng"], 
- ["d", "2", "bbb", "d", "ng"]]  >>>> 5
-(1,3), (1,4), (1,5), (2,4), (3,4)
+# [["a", "1", "aaa", "c", "ng"], 
+#  ["a", "1", "bbb", "e", "g"], 
+#  ["c", "1", "aaa", "d", "ng"], 
+#  ["d", "2", "bbb", "d", "ng"]]  >>>> 5
+# (1,3), (1,4), (1,5), (2,4), (3,4)
 # (1,2,3), (1,3,4).. 이런 것 다 되지만 최소 갯수여야하니 pass
 
 # 최소성 검사를 먼저 한다. for in 으로, 후보키 후보들 중에서 최소성 검사로 먼저 제외함
@@ -24,6 +24,7 @@
 # for문으로 행을 돌면서 열 조합에 나온 행의 인덱스를 해쉬 키-밸류로 넣어서 len을 비교
 
 from itertools import combinations
+from collections import Counter
 
 
 # 최소성 검사 먼저
@@ -38,19 +39,28 @@ def is_minimal(candidate_keys, x):
 
 # 유일성 검사
 def is_unique(relation, combi):
-    hash_list = set()
+    no_duple = set()
+    yes_duple = []
     for row in range(len(relation)):
-        for c in combi: # c: (0,), (1,), (2,), (3,), (0, 1), (0, 2), (0, 3), ...
-            hash_list.add(relation[row][c])
-        combi_cnt_total = len(combi) * len(relation)
-        if combi_cnt_total == len(hash_list):
-            return True
-        else:
-            return False
+        for c in combi: # combi: (0,), (1,), (2,), (3,), (0, 1), (0, 2), (0, 3), ...
+            no_duple.add(relation[row][c])
+            yes_duple.append(relation[row][c])
+    combi_cnt_total = len(combi) * len(relation) # 이게 끝이 아님!
+    # 1: 3개, d: 2개 c,e,2: 1개인데(Counter로 세자), 총 8개에서 3개+2개가 1개로 바뀌어야 함 (차 구하기)
+    # 그러면, 3-1=2, 2-1=1 더하면 3이고
+    # total 8-3=5랑 len(hash_list)랑 같으면 True
+    yes_duple = Counter(yes_duple)
+    for x in yes_duple:
+        if yes_duple[x] > 1:
+            combi_cnt_total -= (yes_duple[x]-1)
+            yes_duple[x] = 1
+    if combi_cnt_total == len(no_duple):
+        return True
+    else:
+        return False
         
     
 def solution(relation):
-    a = 1
     n_row = len(relation)
     n_col = len(relation[0])
     
@@ -62,8 +72,10 @@ def solution(relation):
                     #   (0, 1, 2), (0, 1, 3), (0, 2, 3), (1, 2, 3), (0, 1, 2, 3)]
     
     candidate_keys = []
-    for combi in combi_list:
-        if is_minimal(candidate_keys, combi) and is_unique(relation, combi):
+    for combi in combi_list: # 후보키: (1,3), (1,4), (1,5), (2,4), (3,4)
+        if len(combi) <= 1 and is_unique(relation, combi):
+            candidate_keys.append(combi)
+        elif len(combi) > 1 and is_minimal(candidate_keys, combi) and is_unique(relation, combi):
             candidate_keys.append(combi)
             
     
