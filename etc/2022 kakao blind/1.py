@@ -2,9 +2,13 @@ def cal_date(date, term, term_list):
     y, m, d = date.split('.')
     y, m, d = int(y), int(m), int(d)
     m += int(term_list[term])
+    # 유효기간 달 수의 범위가 1 이상 100 이하
     if m > 12:
-        y += 1
-        m -= 12
+        y += (m // 12)
+        m = (m % 12)
+        if m == 0:
+            y -= 1
+            m = 12
     return y, m, d
 
 def is_valid(y,m,d, t_y, t_m, t_d):
