@@ -11,21 +11,20 @@ def is_valid(y,m,d, t_y, t_m, t_d):
     # 1. 년도로 구분
     if t_y > y: # 1-1. 연도가 지났을 때
         return True # 만료 됐다
-    else: # 1-2. 년도가 올해거나 아직 남았을 때
-
+    elif t_y < y: # 년도가 많이 남았으면 무조건 만료 안됨
+        return False
+    else: # 1-2. 년도가 올해일 때
         # 2. 달로 구분
-        if t_m <= m: # 2-1. 오늘자 달과 같은 월이거나 아직 남았을 때
-            if t_m < m: # 이번 달 이후에 만료면
-                return False # 아직 만료 안 됨
-            
-            # 3. 달이 이번달이어서 년, 월까지 똑같고 이제 일자만 비교
-            else:
-                if t_d >= d: # 3-1. 일자가 같거나 지났으면
-                    return True # 만료
-                else: # 3-2. 일자가 남았으면
-                    return False # 만료 안 됨
-        else: # 2-2. 달이 지났다면
+        if t_m > m: # 2-1. 달이 지났으면 만료
             return True
+        elif t_m < m:
+            return False
+        else: # 3. 달이 이번달이어서 년, 월까지 같으니 마지막으로 일자만 비교
+            if t_d >= d:
+                return True
+            elif t_d < d:
+                return False
+
 
 def solution(today, terms, privacies):
     answer = []
