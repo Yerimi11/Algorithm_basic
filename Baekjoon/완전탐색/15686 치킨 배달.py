@@ -11,7 +11,8 @@
 # 65m + 풀이 참고
 
 import sys
-from collections import deque
+# from collections import deque
+from itertools import combinations
 input = sys.stdin.readline
 n, m = map(int, input().split())
 graph = []
@@ -22,7 +23,10 @@ for _ in range(n):
 # 그래프를 돌며 2(치킨집)인 좌표와 1(집)인 좌표를 각 큐에 저장한다
 # 모든 치킨집 좌표가 저장되어있는 치킨집 큐에서 좌표값을 하나씩 꺼내 모든 집 좌표와의 거리를 계산해 리스트로 만든다
 houses = []
-chickens = deque()
+chickens = []
+# chickens = deque()
+min_dis = 2147000000
+
 for i in range(n):
     for j in range(n):
         if graph[i][j] == 1:
@@ -30,52 +34,66 @@ for i in range(n):
         elif graph[i][j] == 2:
             chickens.append((i, j))
 
-
-# 가게별 치킨거리 list = [[가게별 치킨거리], [], [],...]
-#     1. 각 항목별 합계 비교해서 m개를 거르고
-#     2. 걸러진 리스트항목 중 min값을 출력한다.
-distances = []
-sum_list = []
-idx = 0
-while chickens:
-    store = []
+for store in combinations(chickens, m):
     dis_sum = 0
-    chi_i, chi_j = chickens.popleft()
-    for home_i, home_j in houses:
-        dis = abs(chi_i-home_i)+abs(chi_j-home_j)
-        store.append(dis)
-        dis_sum = sum(store)
-    distances.append((idx, store))
-    sum_list.append((idx, dis_sum))
-    idx += 1
-# print('sum_list: ', sum_list)
-# sum_list:  [(0, 23), (1, 23), (2, 27), (3, 23), (4, 21)]
+    for home in houses:
+        dis = 2147000000
+        for i in range(m):
+            dis = min(dis, abs(home[0] - store[i][0]) + abs(home[1] - store[i][1]))
+        dis_sum += dis
+    min_dis = min(min_dis, dis_sum)
 
-# m개의 가게를 거르려면, 치킨거리 합이 적은 순서대로만 남겨야 한다.
-sum_list = sorted(sum_list, key=lambda x:x[1])
-sum_list = sum_list[:m+1]
-# print('sum_list: ', sum_list)
+print(min_dis)
 
-tmp = []
-for idx, dis_sum in sum_list:
-    tmp.append(idx)
-# print('distances: ', distances)
 
-# distances:  [(0, [2, 2, 2, 5, 6, 6]), (1, [6, 2, 4, 3, 4, 4]), (2, [7, 3, 5, 4, 5, 3]), (3, [6, 4, 4, 3, 4, 2]), (4, [5, 7, 5, 2, 1, 1])]
-# sum_list:  [(4, 21), (0, 23), (1, 23)]
 
-# 걸러진 합계가 몇번째 가게였는지 idx 저장
-sum_idx = []
-for idx, store in distances:
-    if idx in tmp:
-        sum_idx.append(idx)
-# sum_idx: [0, 1, 4]
+# ----------------------------------------------------
 
-# 폐업시키지 않을 치킨집을 최대 m개를 골랐을 때, 도시의 치킨 거리의 최솟값을 출력
-print(min(sum_list))
-# min_dis = 2147000000
-# for i in sum_idx:
-#     if min(distances[i][1]) < min_dis:
-#         min_dis = distances[i]
+# # 가게별 치킨거리 list = [[가게별 치킨거리], [], [],...]
+# #     1. 각 항목별 합계 비교해서 m개를 거르고
+# #     2. 걸러진 리스트항목 중 min값을 출력한다.
+# distances = []
+# sum_list = []
+# idx = 0
+# while chickens:
+#     store = []
+#     dis_sum = 0
+#     chi_i, chi_j = chickens.popleft()
+#     for home_i, home_j in houses:
+#         dis = abs(chi_i-home_i)+abs(chi_j-home_j)
+#         store.append(dis)
+#         dis_sum = sum(store)
+#     distances.append((idx, store))
+#     sum_list.append((idx, dis_sum))
+#     idx += 1
+# # print('sum_list: ', sum_list)
+# # sum_list:  [(0, 23), (1, 23), (2, 27), (3, 23), (4, 21)]
+
+# # m개의 가게를 거르려면, 치킨거리 합이 적은 순서대로만 남겨야 한다.
+# sum_list = sorted(sum_list, key=lambda x:x[1])
+# sum_list = sum_list[:m+1]
+# # print('sum_list: ', sum_list)
+
+# tmp = []
+# for idx, dis_sum in sum_list:
+#     tmp.append(idx)
+# # print('distances: ', distances)
+
+# # distances:  [(0, [2, 2, 2, 5, 6, 6]), (1, [6, 2, 4, 3, 4, 4]), (2, [7, 3, 5, 4, 5, 3]), (3, [6, 4, 4, 3, 4, 2]), (4, [5, 7, 5, 2, 1, 1])]
+# # sum_list:  [(4, 21), (0, 23), (1, 23)]
+
+# # 걸러진 합계가 몇번째 가게였는지 idx 저장
+# sum_idx = []
+# for idx, store in distances:
+#     if idx in tmp:
+#         sum_idx.append(idx)
+# # sum_idx: [0, 1, 4]
+
+# # 폐업시키지 않을 치킨집을 최대 m개를 골랐을 때, 도시의 치킨 거리의 최솟값을 출력
+# print(min(sum_list))
+# # min_dis = 2147000000
+# # for i in sum_idx:
+# #     if min(distances[i][1]) < min_dis:
+# #         min_dis = distances[i]
     
-# print(min_dis)
+# # print(min_dis)
