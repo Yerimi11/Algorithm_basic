@@ -2,6 +2,7 @@
 # |A[0] - A[1]| + |A[1] - A[2]| + ... + |A[N-2] - A[N-1]|
 
 # 순열로 n개짜리의 배열을 다 구해서 계산식에 대입 후 max sum을 return한다
+# 33m
 
 import sys
 from itertools import permutations
@@ -14,12 +15,12 @@ per_list = list(permutations(li, n))
 max_sum = -2147000000
 # 계산식에 대입
 for p_li in per_list:
-    print(p_li)
     p_sum = 0
-    for i in range(len(p_li)+1):
-        print(p_li[i]-p_li[i+1])
-        p_sum += abs(p_li[i]-p_li[i+1]) # 계산식 수정하기!
+    for i in range(1, len(p_li)):
+        p_sum += abs(p_li[i-1]-p_li[i])
     if p_sum > max_sum:
         max_sum = p_sum
 
 print(max_sum)
+
+# 시간복잡도 구해보기
