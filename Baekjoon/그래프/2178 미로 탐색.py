@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/2178
 # 항상 우측하단으로 도착
 import sys
 from collections import deque
