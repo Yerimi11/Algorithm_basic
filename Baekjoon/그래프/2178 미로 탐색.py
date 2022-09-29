@@ -16,7 +16,6 @@ dy = [0, -1, 0, 1]
 visited[0][0] = 1
 
 def bfs(graph):
-    global cnt
     while queue:
         x, y = queue.popleft()
         for i in range(4):
