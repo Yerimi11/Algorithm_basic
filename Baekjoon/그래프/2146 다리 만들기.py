@@ -23,10 +23,11 @@ dy = [0, -1, 0, 1]
 
 visited = list([0]*n for _ in range(n))
 visited[0][0] = 1
+distance = []
 
-# def get_distance():
-    # dis = abs(x2-x1)+abs(y2-y1)
-    # return dis
+def get_distance(x2, y2, x1, y1):
+    dis = abs(x2-x1)+abs(y2-y1)
+    return dis
 
 def find_land(graph, land_num):
     # 섬 번호(n) 구별 ->  2중 for문을 돌며 1이 있을 때 큐1에 넣으며 while문 돌려 섬 하나하나 세어줌.
@@ -55,29 +56,24 @@ def find_land(graph, land_num):
                                 # graph[xx][yy] = -1 # 육지의 가장자리와 맞닿아있는 바다를 -1로 표시
 
                 land_num += 1
-
-
-# Q2에 발생하는 중복튜플 때문에 거리계산이 정확하게 되지 않는 문제 
-def make_bridge(graph, queue2):
-    while queue2:
-        land_num, x, y = queue2.popleft()
-        # graph[x][y] = 0
-        for i in range(4):
-            xx = x + dx[i]
-            yy = y + dy[i]
-            # 육지의 가장자리에서 출발해서 바다('0')라면 +1 해가며 다른 육지 가장자리('land_num')로 간다
-            if 0 <= xx < n and 0 <= yy < n:
-                if graph[xx][yy] == '0':
-                    graph[xx][yy] = -1
-                    queue2.append((land_num, xx, yy))
-                elif graph[xx][yy] < 0:
-                    graph[xx][yy] = graph[x][y] - 1
-                # 지금, 바닷길을 따라 다른 번호의 섬까지 dfs처럼 쭉 가야하는데 못가고 있음.
-
+                make_bridge(queue2)
+                def make_bridge(queue2): # 이 인덴트 위치에 있으면 섬번호가 1, 2일 때만 작동한다
+                    while queue2:
+                        now_land, now_x, now_y = queue2.popleft()
+                        for i in range(4):
+                            xx = x + dx[i]
+                            yy = y + dy[i]
+                            # 육지의 가장자리에서 출발해서 바다('0')라면 +1 해가며 다른 육지 가장자리('land_num')로 간다
+                            if 0 <= xx < n and 0 <= yy < n:
+                                # 육지1->육지2로 가는 최단거리(dis = |r2-r1|+|c2-c1|) 계산
+                                if now_land == land_num:
+                                    queue2.append(queue2.popleft()) # 이 문장 때문에 while문이 안끝나는 것도 문제
+                                else:
+                                    dis = get_distance(now_x, now_y, x, y)
+                                    distance.append(dis)
 find_land(graph, 1)
-make_bridge(graph, queue2)
-
-for x in graph:
-    print(x)
+print(min(distance))
+# for x in graph:
+#     print(x)
 
 # 가장 짧은 거리 출력 (min사용)
