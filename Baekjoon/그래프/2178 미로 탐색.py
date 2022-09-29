@@ -10,10 +10,10 @@ for _ in range(n):
 
 queue = deque()
 visited = list([0]*m for _ in range(n))
-queue.append((1, 1))
+queue.append((0, 0))
 dx = [-1, 0, 1, 0]
 dy = [0, -1, 0, 1]
-cnt = 1
+visited[0][0] = 1
 
 def bfs(graph):
     global cnt
@@ -22,12 +22,11 @@ def bfs(graph):
         for i in range(4):
             xx = x + dx[i]
             yy = y + dy[i]
-            if 0 <= xx < m and 0 <= yy < n and graph[xx][yy] == 1 and visited[xx][yy] == 0:
+            if 0 <= xx < n and 0 <= yy < m and graph[xx][yy] == '1' and visited[xx][yy] == 0:
                 queue.append((xx, yy))
-                visited[xx][yy] = 1
-                cnt += 1
+                visited[xx][yy] = visited[x][y] + 1
                 
             
 bfs(graph)
 
-print(cnt)
+print(visited[n-1][m-1])
