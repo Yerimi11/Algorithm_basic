@@ -1,32 +1,42 @@
 # https://www.acmicpc.net/problem/2468
 
-# 1) 물에 잠기는 영역 dfs로 탐색, 값을 -1로 바꿔준다
-# 2) dfs로 안전 영역(>=0)을 찾아 갯수(재귀 level)를 센다
-
 import sys
+sys.setrecursionlimit(10**6)
 
-def dfs(graph, depth, visited, safe_cnt_li):
-
-    
-
-
-    dfs(graph, depth+1, visited, safe_cnt_li)
-    return
+def dfs(graph, i, j, visited, rain_level):
+    global cnt
+    visited[i][j] = 1
+    for d in range(4):
+        xx = i + dx[d]
+        yy = j + dy[d]
+        # ** 물이 높이보다 높은 영역(잠기지 않은 영역)을 체크하면, dfs로 안잠긴 영역을 세게 된다. **
+        if 0 <= xx < n and 0 <= yy < n and graph[xx][yy] > rain_level and visited[xx][yy] == 0: # 잠기지 않으면
+            visited[xx][yy] = 1 # 1: 잠기지 않았음, 0: 물에 잠김
+            dfs(graph, xx, yy, visited, rain_level)
 
 
 if __name__ == "__main__":
     input = sys.stdin.readline
     n = int(input())
     graph = []
+    max_height = -2147000000
     for x in range(n):
-        graph.append(map(int, input().split()))
-    visited = list([0]*n for _ in range(n))
-    safe_cnt_li = []
-    for i in range(max_height):
-        # 0~max_height까지 비가 왔을 때 잠기는 영역 & 안전 영역을 찾는다
+        line = list(map(int, input().split()))
+        graph.append(line)
+        max_height = max(max_height, max(line))
+    dx = [-1, 0, 1, 0]
+    dy = [0, -1, 0, 1]
+    cnt_list = []
+    # 0~max_height까지 비가 왔을 때 잠기는 영역 & 안전 영역을 찾는다
+    for rain_level in range(max_height):
+        cnt = 0
+        visited = list([0]*n for _ in range(n))
+        for i in range(n):
+            for j in range(n):
+                if graph[i][j] > rain_level and visited[i][j] == 0:
+                    dfs(graph, i, j, visited, rain_level)
+                    cnt += 1 # 안전영역 갯수 1개 추가
+        cnt_list.append(cnt)
         
-
-        dfs(graph, 0, visited, safe_cnt_li)
-        safe_cnt_li.append()
     # 안전영역의 갯수가 최대가 될 때의 갯수를 출력한다.
-    
+    print(max(cnt_list))
