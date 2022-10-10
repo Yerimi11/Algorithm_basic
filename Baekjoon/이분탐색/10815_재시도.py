@@ -20,7 +20,7 @@ n_list = list(map(int, input().split()))
 m = int(input())
 m_list = list(map(int, input().split()))
 
-n_list.sort() # 1920문제랑 헷갈리는게, 어떤 리스트를 정렬해야하는건지 구분을 못하겠다. 이건 m_list를 정렬해야하는 줄 알았다.
+n_list.sort()
 
 answer = []
 for i in range(len(m_list)):
