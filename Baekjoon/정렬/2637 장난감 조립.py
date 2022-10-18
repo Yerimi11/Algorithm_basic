@@ -4,17 +4,29 @@ from collections import deque
 input = sys.stdin.readline
 n = int(input())
 m = int(input())
-bupum = {}
+parts = dict() # 부품
 queue = deque()
 result = []
 indegree = [0]*(n+1)
 graph = [[0]*(n+1) for _ in range(n+1)]
-for _ in range(n):
+for _ in range(n+1):
     x, y, k = list(map(int, input().split()))
     # 인접행렬그래프로 받기
     indegree[x] += 1
     graph[y][x] = 1
-    bupum[x] = bupum.get(y, []) + k
-    #해쉬 안에 해쉬 어떻게..
-    # 커밋 어제자로
-a = 0
+    
+    # 해쉬 안에 해쉬 넣기 1
+    parts[x] = parts.get(x, dict())
+    parts[x][y] = k
+
+    # 해쉬 안에 해쉬 넣기 2
+    # tmp = parts.get(x, dict())
+    # tmp[y] = k
+    # if not parts.get(x):
+    #     parts[x] = tmp
+    
+    # {5: {1: 2, 2: 2}, 7: {5: 2, 6: 3, 4: 5}, 6: {5: 2, 3: 3, 4: 4}}
+
+    
+
+print(parts)
