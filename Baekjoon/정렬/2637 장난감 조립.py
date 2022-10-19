@@ -18,7 +18,6 @@ for _ in range(M):
     parts_need[part][target] = count
     indegree[target] += 1
 
-
 # basic_part에는 기본 부품을 넣는다 ( 초기에 진입차수가 0인 부품들 )
 queue = collections.deque()
 basic_part = []
