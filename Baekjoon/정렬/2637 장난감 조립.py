@@ -1,12 +1,11 @@
 # 어떤 번호가 중간부품 번호로(순서대로 X) 나올지 모르니 위상정렬이 필요하다.
 import sys
 import copy
-# from collections import deque
+from collections import deque
 input = sys.stdin.readline
 n = int(input())# 완제품 번호
 m = int(input())
 parts = dict()  # 부품
-# queue = deque() # 받아들이는 간선의 수(indgree)가 0일 때 큐에 삽입한다.
 topology = []   # 위상정렬 결과를 담을 리스트. 큐에서 빠지는대로 넣는다.
 result = []     # 최종 부품 갯수를 담을 리스트
 indegree = [0]*(n+1)
@@ -55,25 +54,44 @@ while True:
     else:
         break   # while문 종료
 
-print(topology)
+# print(topology)
 
 # parts안에 key값으로 존재하지 않으면 기본부품 번호이다.
-basic = []
+basic = deque()
 for i in range(1, n+1):
     if not parts.get(i):
         basic.append(i)
 
-# n은 항상 완제품 번호.
-needs = copy.deepcopy(parts[n]) # {5: 2, 6: 3, 4: 5}
-temp = []
-while True:
-    for part, cnt in needs.items():
-        if part not in basic and needs[part] > 0: # 필요 부품이 중간번호 부품이면
-            temp.append(parts[part])
-            needs[part] -= 1
-        else:
-            if needs[part] == -1:
-                pass
-            else:
-                result.append((part, parts[n][part])) # 기본부품이면
-                needs[part] = -1
+# # n은 항상 완제품 번호.
+# needs = copy.deepcopy(parts[n]) # {5: 2, 6: 3, 4: 5}
+# temp = []
+# while True:
+#     for part, cnt in needs.items():
+#         if part not in basic and needs[part] > 0: # 필요 부품이 중간번호 부품이면
+#             temp.append(parts[part])
+#             needs[part] -= 1
+#         else:
+#             if needs[part] == -1:
+#                 pass
+#             else:
+#                 result.append((part, parts[n][part])) # 기본부품이면
+#                 needs[part] = -1
+
+# parts = {5: {1: 2, 2: 2}, 7: {5: 2, 6: 3, 4: 5}, 6: {5: 2, 3: 3, 4: 4}}
+for find_part in topology:
+    if find_part not in basic:
+        for i in range(len(graph[find_part])):
+            if graph[find_part][i] != 0:
+                for key, value in parts[find_part].items():
+                    if parts[i].get(key):
+                        parts[i][key] += (parts[i][find_part]*value)
+                    else:
+                        parts[i][key] = (parts[i][find_part]*value)
+                del parts[i][find_part]
+
+result = sorted(parts[n].items())
+# for key, value in parts[n].items():
+    # 정렬 필요
+    # print(key, value)
+for res in result:
+    print(*res)
