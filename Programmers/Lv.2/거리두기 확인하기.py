@@ -1,55 +1,100 @@
-# 큐를 덱으로 바꾸니 시간초과 해결 됨
-
 from collections import deque
 
-D = ((-1, 0), (1, 0), (0, -1), (0, 1)) # 상하좌우
-
-def bfs(place, row, col):
-    visited = [[False for _ in range(5)] for _ in range(5)]
-    q = deque()
-    visited[row][col] = True
-    q.append((row, col, 0))
-
-    while q:
-        r, c, m_dis = q.popleft() # r, c, manhattan distance
-        
-        if m_dis > 2:
+dx = [-1, 0, 1, 0]
+dy = [0, -1, 0, 1]
+    
+def bfs(place, i, j):
+    visited = [[0]*5 for _ in range(5)]
+    queue = deque()
+    queue.append((i, j, 0))
+    while queue:
+        x, y, dis = queue.popleft()
+        visited[x][y] = 1
+        if dis > 2:
             continue
-        if m_dis != 0 and place[r][c] == 'P':
+        if dis != 0 and place[x][y] == "P":
             return False
-
+        
         for i in range(4):
-            nr = r + D[i][0]
-            nc = c + D[i][1]
-            if nr < 0 or nr > 4 or nc < 0 or nc > 4:
-                continue
-            if visited[nr][nc]:
-                continue
-            if place[nr][nc] == 'X': # 파티션 체크
-                continue
-            visited[nr][nc] = True # 빈 테이블일 때
-            q.append((nr, nc, m_dis + 1))
-    return True
-
-def check(place):
-    for r in range(5):
-        for c in range(5):
-            if place[r][c] == 'P': # 사람일 때만 BFS돌림
-                if bfs(place, r, c) == False:
-                    return False
+            xx = dx[i] + x
+            yy = dy[i] + y
+            # dis = abs(xx-x) + abs(yy-y)
+            if 0<=xx<5 and 0<=yy<5 and visited[xx][yy] == 0 and place[xx][yy] != "P":
+                if place[xx][yy] == "X":
+                    continue
+                visited[xx][yy] = 1
+                # if dis == 1:
+                queue.append((xx, yy, dis + 1))
     return True
     
-
 def solution(places):
     answer = []
-
+    
     for place in places:
-        if check(place):
-            answer.append(1)
-        else:
-            answer.append(0)
-
+        for i in range(5):
+            for j in range(5):
+                if place[i][j] == "P":
+                    if bfs(place, i, j) == False:
+                        answer.append(0)
+        answer.append(1)
+    
+    # manhattan = abs(r1-r2) + abs(c1-c2)
     return answer
+
+solution([["POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"], ["POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"], ["PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"], ["OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"], ["PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"]])
+
+# # 큐를 덱으로 바꾸니 시간초과 해결 됨
+
+# from collections import deque
+
+# D = ((-1, 0), (1, 0), (0, -1), (0, 1)) # 상하좌우
+
+# def bfs(place, row, col):
+#     visited = [[False for _ in range(5)] for _ in range(5)]
+#     q = deque()
+#     visited[row][col] = True
+#     q.append((row, col, 0))
+
+#     while q:
+#         r, c, m_dis = q.popleft() # r, c, manhattan distance
+        
+#         if m_dis > 2:
+#             continue
+#         if m_dis != 0 and place[r][c] == 'P':
+#             return False
+
+#         for i in range(4):
+#             nr = r + D[i][0]
+#             nc = c + D[i][1]
+#             if nr < 0 or nr > 4 or nc < 0 or nc > 4:
+#                 continue
+#             if visited[nr][nc]:
+#                 continue
+#             if place[nr][nc] == 'X': # 파티션 체크
+#                 continue
+#             visited[nr][nc] = True
+#             q.append((nr, nc, m_dis + 1))
+#     return True
+
+# def check(place):
+#     for r in range(5):
+#         for c in range(5):
+#             if place[r][c] == 'P': # 사람일 때만 BFS돌림
+#                 if bfs(place, r, c) == False:
+#                     return False
+#     return True
+    
+
+# def solution(places):
+#     answer = []
+
+#     for place in places:
+#         if check(place):
+#             answer.append(1)
+#         else:
+#             answer.append(0)
+
+#     return answer
 
 
 # https://www.youtube.com/watch?v=hCVgKE6qwFs
