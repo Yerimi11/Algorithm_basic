@@ -6,7 +6,7 @@ def cal_minutes(time, carnums, inout):
     
     # 같은차량이어야하고, Out, In 데이터가 다 있을 때 계산됨
     # 추가로, if out 데이터가 없으면 23:59 출차로 간주하는 예외사항 필요
-    h, m = time.split(:) # 시, 분으로 쪼갬
+    h, m = time.split[:] # 시, 분으로 쪼갬
     if inout == 'IN':
         In_h, In_m = h, m
     else:
